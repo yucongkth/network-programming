@@ -11,10 +11,11 @@ import java.net.*;
 class Test {
 
     public static void main(String[] args) throws Exception {
-        Socket socket = new Socket("130.229.161.177", 10001);                 //建立一个socket来向服务端的10001端口发送信息
+        Socket socket = new Socket("130.229.161.177", 10001);                 //commnuicate with the server in port 10001
+        
 
-        new ThreadWriter(socket).start();                                   //调用threadwriter 向服务器写数据
-        new ThreadReader(socket).start();                                   //调用threadreader 读取服务器发送过来的数据
+        new ThreadWriter(socket).start();                                   //use ThreadWriter to send data to the server  
+        new ThreadReader(socket).start();                                   //use Threadreader to read the data from the server reader 
     }
 
 }
