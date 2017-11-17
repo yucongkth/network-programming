@@ -15,20 +15,20 @@ public class ThreadWriter extends Thread {
     public void run() {
         try {
             BufferedReader bufr
-                    = new BufferedReader(new InputStreamReader(System.in));                       //建立一个buffer来放置从外部读取的数据流
+                    = new BufferedReader(new InputStreamReader(System.in));                       //create a buffer to store input stream
             BufferedWriter bufout
-                    = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));       //建立一个buffer来放置要写出的数据流
+                    = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));       //create a buffer to store output stream
 
             String line;
             while ((line = bufr.readLine()) != null) {
                 if ("QUIT".equals(line)) {
                     break;
-                }                                                                                 //输入NO 就会停止运行 保证客户端能够随时停止游戏
+                }                                                                                 //type in "QUIT" and the game will stop 
                 bufout.write(line);
                 bufout.newLine();
-                bufout.flush();                                                                  //将buffer中的数据推出去
+                bufout.flush();                                                                  //send the stream in buffer to the server
             }
-            socket.close();                                                                      //关闭服务
+            socket.close();                                                                      //close the socket and buffer
             bufr.close();
 
         } catch (Exception e) {
